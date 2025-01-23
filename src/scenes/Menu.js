@@ -6,7 +6,10 @@ class Menu extends Phaser.Scene {
     preload() {
         this.load.image('rocket', './assets/rocket.png')
         this.load.image('spaceship', './assets/spaceship.png')
+        this.load.image('xwing', './assets/xwing.png')
+        this.load.image('Space', './assets/Space.png')
         this.load.image('starfield', './assets/starfield.png')
+        this.load.image('starfield2', './assets/starfield2.png')
         this.load.spritesheet('explosion', './assets/explosion.png', {
             frameWidth: 64,
             frameHeight: 32,
@@ -16,6 +19,11 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx-select', './assets/sfx-select.wav')
         this.load.audio('sfx-explosion', './assets/sfx-explosion.wav')
         this.load.audio('sfx-shot', './assets/sfx-shot.wav')
+        this.load.audio('explosion1', './assets/explosion1.wav')
+        this.load.audio('explosion2', './assets/explosion2.wav')
+        this.load.audio('explosion3', './assets/explosion3.wav')
+        this.load.audio('explosion4', './assets/explosion4.wav')
+        this.load.audio('SpaceHeroes', './assets/SpaceHeroes.wav')
     }
 
     create() {
@@ -24,6 +32,8 @@ class Menu extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
             frameRate: 30
         })
+
+        this.add.image(game.config.width / 2, game.config.height / 2, 'Space');
 
         let menuConfig = {
             fontFamily: 'Courier',
@@ -46,6 +56,12 @@ class Menu extends Phaser.Scene {
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
+
+        // add background music
+        this.SpaceHeroes = this.sound.add('SpaceHeroes', {volume: 0.3, loop: true})
+        if(!this.SpaceHeroes.isplaying) {
+          this.SpaceHeroes.play()
+        }
     }
 
     update() {
